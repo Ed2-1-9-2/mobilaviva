@@ -1,0 +1,46 @@
+# Render Blueprint: New > Blueprint > alegi repo-ul GitHub cu acest proiect.
+# Baza de date NU mai e Postgres-ul gratuit Render (expiră după 30 de zile): foloseste Neon, vezi docs/DEPLOY.md.
+services:
+  - type: web
+    name: mobilaviva
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      # Neon (PostgreSQL gratuit, fără expirare): lipești aici connection string-ul postgresql://... din neon.tech
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_RESET
+        value: "true"
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER2
+        sync: false
+      - key: SMTP_PASSWORD2
+        sync: false
+      - key: SMTP_HOST2
+        sync: false
+      - key: GMAIL_RELAY_URL
+        sync: false
+      - key: GMAIL_RELAY_TOKEN
+        sync: false
+      - key: COOKIE_SECURE
+        value: "true"

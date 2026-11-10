@@ -1,0 +1,82 @@
+>>> Verific https://mobilaviva.vercel.app
+  ✔ site-ul răspunde
+
+Cerințe obligatorii
+  ✔ 1 publicare: nu se cere; proiectul se predă ca site_nume_prenume.zip (./scripts/package.sh)
+  ✔ 2 bază de date (JPA: H2 / PostgreSQL)
+  ✔ 2 bază de date: print screen 02
+  ✔ 3 script-uri pe server: Java (Spring Boot), 11 controllere, 47 endpoint-uri (REST + pagini)
+  ✔ 3 logică pe server: parolele se stochează cu hash PBKDF2, nu în clar
+  ✔ 3 logică pe server: comanda se salvează tranzacțional și stocul se scade pe server
+  ✔ 3 logică pe server: prețurile, transportul și totalul se calculează pe server (nu se iau din browser)
+  ✔ 3 logică pe server: cantitățile se validează și se limitează la stoc
+  ✔ 3 logică pe server: /api/admin/** accesibil doar rolului ADMIN
+  ✔ 3 script-uri server: print screen 03
+  ✔ 3 server (rulare): /api/products returnează JSON generat din baza de date
+  ✔ 3 server (rulare): pagina e generată pe server (title, canonical și meta injectate de PageController)
+  ✔ 3 server (rulare): /sitemap.xml generat dinamic din baza de date
+  ✔ 3 server (rulare): cantitatea cerută (999999) a fost limitată pe server la 2
+  ✔ 3 server (rulare): /api/admin/products respins fără autentificare (403)
+  ! 4 plata: Stripe inactiv (cheie lipsă/invalidă în .env) => se folosește cardul simulat; pentru „cont de test, card de test” pune sk_test_... în .env
+  ✔ 4 plată Stripe: print screen 04
+
+I. Elemente clasice
+  ✔ I.1 meniu: print screen 05
+  ✔ I.2 catalog: produse returnate de API
+  ✔ I.3 produse grupate pe categorii
+  ✔ I.4 detalii produs (preț, caracteristici)
+  ✔ I.5 coș de cumpărături (API)
+  ✔ I.6 comenzile cer cont de utilizator
+  ✔ I.7 stocuri în catalog
+  ✔ I.8 promoții (produse cu preț redus)
+  ✔ I.11 administrare există și e protejată
+  ✔ I.2 catalog: print screen 06
+  ✔ I.3 categorii: print screen 07
+  ✔ I.4 detalii: print screen 08
+  ✔ I.5 coș: print screen 09
+  ✔ I.6 comandă pe cont: print screen 10
+  ✔ I.7 stocuri: print screen 11
+  ✔ I.8 promoții: print screen 12
+  ✔ I.9 factură (număr, articole, TVA)
+  ✔ I.9 factură: print screen 13
+  ! I.10 plata facturii: card de test simulat (4242...); pentru „cont de test” real pune sk_test_... în .env și refă print screen-ul 04
+  ✔ I.10 /api/checkout există și cere cont de utilizator
+  ✔ I.10 /api/checkout/offline există și cere cont de utilizator
+  ✔ I.10 plata facturii (testată): print screen 14
+  ✔ I.10 metode de plată (card, ramburs, transfer): print screen 14b
+  ✔ I.11 administrare: print screen 15
+
+II. Personalizări
+  ✔ comparator de produse implementat
+  ✔ modul reprezentativ: planificator de cameră implementat
+  ✔ set asortat „completează camera” implementat
+  ✔ listă de dorințe implementată
+  ✔ set asortat: API răspunde
+  ✔ listă de dorințe: cere cont (API)
+  ✔ asistent AI (chatbot) implementat
+  ✔ asistent AI: API răspunde ("mode":"local")
+  ! asistent AI: rulează în mod local; pune ANTHROPIC_API_KEY în .env pentru răspunsuri generate de Claude
+  ✔ personalizări: comparator: print screen 16-
+  ✔ personalizări: planificator: print screen 16b
+  ✔ personalizări: set asortat: print screen 16c
+  ✔ personalizări: listă de dorințe: print screen 16d
+  ✔ personalizări: asistent AI: print screen 20-
+  ✔ retenție: recenzii clienți (cumpărător verificat) și produse văzute recent
+  ✔ test funcțional cap-coadă cu carduri de test: ./scripts/test_flux.sh (raport în docs/test-flux.txt)
+  ✔ căutări speciale: fraze naturale (preț, stoc, oferte) și căutare după spațiu disponibil
+  ✔ personalizări: căutări speciale: print screen 21
+  ✘ personalizări: căutare după spațiu: lipsește print screen 22 (./scripts/screenshots.sh)
+
+III. Documentare și prezentare
+  ✔ PageSpeed Mobile: print screen 18
+  ✔ PageSpeed Desktop: print screen 19
+  ✔ documentare .docx și prezentare .pptx generate
+  ✔ textele din documentare sunt completate
+  ✔ link de publicare: https://mobilaviva.vercel.app
+
+Securitate
+  ✔ parola implicită de admin nu funcționează pe site-ul public
+  ✔ consola H2 nu e accesibilă public (403)
+  ✔ cheia Stripe e în .env (nu intră în arhivă)
+
+>>> Rezultat: 65 îndeplinite, 3 de verificat, 1 neîndeplinite

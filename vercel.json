@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "regions": ["fra1"],
+  "installCommand": "cd frontend && npm install --no-audit --no-fund",
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://mobilaviva-1205413489.fly.dev/api/:path*" },
+    { "source": "/img/:path*", "destination": "https://mobilaviva-1205413489.fly.dev/img/:path*" },
+    { "source": "/robots.txt", "destination": "https://mobilaviva-1205413489.fly.dev/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "https://mobilaviva-1205413489.fly.dev/sitemap.xml" },
+    { "source": "/llms.txt", "destination": "https://mobilaviva-1205413489.fly.dev/llms.txt" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

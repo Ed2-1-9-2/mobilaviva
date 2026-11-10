@@ -1,0 +1,8 @@
+target
+data
+frontend/node_modules
+scripts
+docs
+.runtime
+src/main/resources/static
+frontend/dist

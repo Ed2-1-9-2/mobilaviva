@@ -1,0 +1,3 @@
+Poze reale ale produselor. Numele fișierului = denumirea produsului fără diacritice, cu litere mici și cratime
+(ex. canapea-extensibila-3-locuri-milano.jpg). Formate: webp, jpg, jpeg, png. Listă completă: ./scripts/photos_list.sh
+Dimensiune recomandată: 900 px lățime, format apropiat de 10:7, sub 150 KB (PageSpeed). La pornire, serverul leagă singur pozele de produse.

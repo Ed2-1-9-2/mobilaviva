@@ -1,0 +1,98 @@
+{
+  "tip": "B2C (business to consumer): magazin online care vinde direct persoanelor fizice.",
+  "tip_detalii": [
+    "Clientul își creează cont, adaugă produse în coș, plătește online și primește factură.",
+    "Plata se face electronic, cu card, în modul de test (Stripe, card de test 4242 4242 4242 4242).",
+    "Livrarea este gratuită peste 1500 RON, altfel 49,99 RON."
+  ],
+  "produse": "Mobilier pentru locuință (canapele, paturi, mese, scaune, dulapuri).",
+  "produse_motiv": [
+    "Cumpărătură cu valoare medie ridicată și cerere constantă.",
+    "Produsele se pretează la prezentare vizuală, comparare și planificare a camerei.",
+    "Permit personalizări utile: comparator de produse și planificator de cameră."
+  ],
+  "site_model": "Din cele 10 magazine analizate în Studiul de caz 1 (5 din România, 5 din străinătate) am folosit ca model două site-uri: Mobexpert (mobexpert.ro), locul 1 în topul vânzătorilor de mobilă din România, și home24.de (Germania), cel mai bun scor de viteză mobilă dintre cele 10 site-uri.",
+  "site_model_concluzie": [
+    "Mobexpert (model pentru România): cel mai larg set de metode de plată (card, rate fără dobândă până la 48 de rate, ramburs, link de plată, ordin de plată), mega-meniu pe camere și rețea de magazine pentru vizionare. Punctul slab observat: termenul de livrare apare doar pe pagina produsului, iar LCP pe mobil este 11,3 s. În MobilaViva afișez termenul și costul total de livrare încă din pagina produsului, cu o politică unică de livrare.",
+    "home24.de (model pentru străinătate): cel mai bun scor mobil dintre cele 10 site-uri (69, LCP 4,1 s) și cel mai mic LCP pe desktop (0,8 s), recenzii Trustpilot (4,5/5) pentru încredere, plată pe factură și retur în 30 de zile. Preiau paginile ușoare, încrederea prin recenzii, plata pe factură și termenul de livrare clar; țintă LCP sub 2,5 s.",
+    "Din auditul de funcționalitate (1.1) am reținut trei criterii decisive pentru mobilă: termenul și costul total afișate din pagina produsului, dimensiunile exacte și o politică de retur ușor de găsit. Datele ECDB (aprox. 88,5–89% abandon al coșului) arată că transparența costurilor și metodele de plată contează direct pentru vânzări."
+  ],
+  "platforma": "Dezvoltare proprie (realizare manuală a site-ului, varianta a treia din cerință), fără platformă de comerț electronic gata făcută.",
+  "platforma_concluzie": [
+    "Din cele 9 produse analizate în Studiul de caz 2 (comerciale: Shopify, BigCommerce, X-Cart; freeware: WooCommerce, PrestaShop, OpenCart; românești: Gomag, MerchantPro, Extended) am testat Shopify (1.1) și PrestaShop (1.2: instalare, produs cu combinații, TVA pentru România, comandă și factură PDF) și am ales PrestaShop ca model.",
+    "De ce nu o platformă comercială: abonamente lunare (Shopify și BigCommerce 39–399 USD/lună, Gomag 7–97 €/lună), comision de tranzacție la Shopify (2,5–2,9% + 0,30 USD) și control redus asupra codului; X-Cart cere server propriu, iar la X-Cart și Extended prețul este doar la cerere.",
+    "De ce PrestaShop ca model: gratuit, cu combinații de atribute (culoare, dimensiune, material) cu stoc și preț propriu, TVA pe țări, monede multiple și factură PDF native, adică exact funcțiile unui magazin de mobilă; WooCommerce și OpenCart le obțin prin plugin-uri sau extensii.",
+    "De ce aplicație proprie, nu PrestaShop instalat: PrestaShop este un monolit PHP și nu acoperă cerința de backend REST în Java și frontend SPA în Vue 3. Preiau modelul funcțional (variante, stocuri, TVA, comenzi, factură) și îl implementez cu entități JPA, cu control complet asupra codului și cost zero de licență."
+  ],
+  "limbaj": "Java 17 (Spring Boot) pentru backend; JavaScript (Vue 3) pentru frontend.",
+  "tehnologii": [
+    "Backend: Java, Spring Boot, Spring Data JPA, Maven.",
+    "Frontend: Vue 3 (aplicație SPA), Vue Router, Vite.",
+    "Plăți: Stripe Checkout (mod test) și card simulat local.",
+    "Rulare: Docker sau Maven local; proiectul se predă ca arhivă zip."
+  ],
+  "baza_date": [
+    "Dezvoltare locală: H2.",
+    "Producție: PostgreSQL.",
+    "Tabele principale: product, app_users, orders, order_items."
+  ],
+  "arhitectura": [
+    "Straturi separate: controller, service, repository, entity.",
+    "API REST consumat de frontend-ul Vue.",
+    "Parole stocate cu PBKDF2 și salt.",
+    "Facturile se generează după confirmarea plății."
+  ],
+  "personalizari": [
+    [
+      "Planificator de cameră „Încape la mine?” (modulul reprezentativ)",
+      "Introduci dimensiunile camerei (cm), adaugi piese din catalog și le tragi pe un plan 2D la scară. Piesele care nu încap sau se suprapun devin roșii, iar aplicația arată cât din podea e ocupat și dă un verdict. Piesele se pot rota și adăuga în coș.",
+      "Implementat"
+    ],
+    [
+      "Comparator de produse",
+      "Până la 3 produse într-un tabel side-by-side (preț, rating, material, dimensiuni, culoare, stoc, livrare), cu adăugare în coș.",
+      "Implementat"
+    ],
+    [
+      "Căutare cu autocomplete",
+      "Sugestii în timp real din denumiri, brand și material; rezultate parțiale când nu există potriviri complete.",
+      "Implementat"
+    ],
+    [
+      "Estimare livrare pe coș",
+      "Termenul de livrare se calculează după cel mai lent produs din coș; transport gratuit peste 1500 RON.",
+      "Implementat"
+    ],
+    [
+      "Ilustrații de mobilier generate",
+      "Fiecare produs are o imagine vectorială potrivită tipului și culorii; fotografiile reale se pot seta din Admin.",
+      "Implementat"
+    ],
+    [
+      "Set asortat „completează camera”",
+      "Pe pagina produsului apar piese din aceeași colecție (ex. pat Luna + noptieră Luna) și din categorii complementare, în stoc; setul complet se adaugă în coș dintr-un click, cu totalul afișat.",
+      "Implementat"
+    ],
+    [
+      "Listă de dorințe",
+      "Produse favorite salvate pe cont (♡). Pagina /wishlist arată prețul de la salvare și o alertă 🔔 când prețul a scăzut; contorul apare în meniu.",
+      "Implementat"
+    ]
+  ],
+  "modul_reprezentativ": [
+    "Flux: pagina produsului, butonul „Încape în camera ta?”, pagina /planner, dimensiunile camerei, tragerea pieselor pe plan, verdictul.",
+    "Algoritm: amprenta la sol se extrage din dimensiunile produsului; se verifică încadrarea în cameră și suprapunerea fiecărei piese; se calculează procentul de podea ocupat (peste 50% se avertizează).",
+    "Implementare: Vue 3 (SVG interactiv cu tragere), Planner.vue și footprint.js."
+  ],
+  "instalare": [
+    "1. Necesită JDK 17+, Maven și Node 18+ (sau Docker).",
+    "2. ./scripts/run.sh pornește aplicația; deschide http://localhost:PORT.",
+    "3. Pentru plata Stripe de test: export STRIPE_SECRET_KEY=sk_test_... înainte de run.sh.",
+    "4. Link public: ./scripts/public.sh; print screen-uri: ./scripts/screenshots.sh."
+  ],
+  "concluzii": [
+    "Proiectul acoperă fluxul complet: catalog, cont, coș, plată electronică de test, comandă, factură.",
+    "Plata electronică a fost testată cu cont și card de test.",
+    "Scorurile PageSpeed (Mobile și Desktop) sunt în capturile 18 și 19."
+  ]
+}

@@ -1,0 +1,294 @@
+<!doctype html><html lang="ro"><head><meta charset="utf-8"><title>Prezentare MobilaViva</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;max-width:1000px;margin:24px auto;padding:0 16px;color:#222}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:6px 8px;text-align:left;vertical-align:top}
+figure{margin:24px 0;page-break-inside:avoid}img{max-width:100%;border:1px solid #ccc}figcaption{font-size:14px;color:#555;margin-top:4px}
+.todo div{border:2px dashed #c33;padding:30px;color:#c33;text-align:center}</style></head><body>
+<h1>Prezentare proiect — MobilaViva (site_nume_prenume.zip)</h1>
+<p><strong>Student:</strong> <em>(nume prenume, grupa)</em></p>
+<h2>1. Date generale</h2>
+<table>
+<thead>
+<tr>
+<th>Cerință</th>
+<th>Răspuns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tip comerț electronic</td>
+<td>B2C (magazin online către persoane fizice)</td>
+</tr>
+<tr>
+<td>Produse comercializate și de ce</td>
+<td>Mobilă și decorațiuni pentru casă: canapele, paturi, dulapuri, comode, mese, scaune, birouri, iluminat. <em>(completează motivul: cerere constantă, produse cu caracteristici clare de comparat, valoare mare a coșului, livrare estimată diferită pe produs)</em></td>
+</tr>
+<tr>
+<td>Site model (studiul de caz 1)</td>
+<td><em>(completează: site-ul ales, de ex. un retailer de mobilă, și ce ai preluat de la el: filtre, promoții, estimare livrare)</em></td>
+</tr>
+<tr>
+<td>Platformă software (studiul de caz 2)</td>
+<td>Dezvoltare proprie, fără platformă gata făcută. <em>(completează motivul și comparația cu platformele studiate)</em></td>
+</tr>
+<tr>
+<td>Realizat în</td>
+<td>Java 17 + Spring Boot 3 (server, API REST), JavaScript: Vue 3 + Vue Router + Vite (client)</td>
+</tr>
+<tr>
+<td>Baze de date</td>
+<td>H2 (dezvoltare) / PostgreSQL (producție) prin JPA/Hibernate: tabelele <code>product</code>, <code>app_users</code>, <code>orders</code>, <code>order_items</code></td>
+</tr>
+<tr>
+<td>Plată electronică</td>
+<td>Stripe Checkout în mod test (card <code>4242 4242 4242 4242</code>); fără cheie, card de test simulat</td>
+</tr>
+<tr>
+<td>Publicat la</td>
+<td><em>(link-ul public, vezi DEPLOY.md; altfel se atașează acest zip)</em></td>
+</tr>
+<tr>
+<td>Cont administrator</td>
+<td><code>admin@mobilaviva.com</code> (parola din <code>ADMIN_PASSWORD</code>)</td>
+</tr>
+</tbody></table>
+<h2>2. Cerințe obligatorii și elemente clasice (print screen pentru fiecare)</h2>
+<p>Fișierele se salvează în <code>docs/screenshots/</code> cu numele din <code>docs/screenshots/LISTA.txt</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Cerință</th>
+<th>Unde în aplicație</th>
+<th>Print screen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Obligatoriu 1: publicat pe web</td>
+<td>URL-ul public în browser</td>
+<td>01</td>
+</tr>
+<tr>
+<td>Obligatoriu 2: bază de date</td>
+<td>Consola H2 / <code>psql</code> cu tabelele <code>product</code>, <code>app_users</code>, <code>orders</code>, <code>order_items</code></td>
+<td>02</td>
+</tr>
+<tr>
+<td>Obligatoriu 3: script-uri server</td>
+<td><code>src/main/java/com/mobila/shop/*</code> (controllere REST, servicii, entități JPA)</td>
+<td>03</td>
+</tr>
+<tr>
+<td>Obligatoriu 4: plată electronică</td>
+<td>Checkout → pagina Stripe în mod test → pagina comenzii</td>
+<td>04, 04b</td>
+</tr>
+<tr>
+<td>I.1 Navigare cu meniuri</td>
+<td>Bara de categorii + Oferte din antet (Vue Router, fără reîncărcare de pagină)</td>
+<td>05</td>
+</tr>
+<tr>
+<td>I.2 Catalog</td>
+<td>Pagina principală cu filtre (categorie, brand, preț, stoc, oferte), sortare, căutare, paginare</td>
+<td>06</td>
+</tr>
+<tr>
+<td>I.3 Categorii</td>
+<td><code>/?category=Canapele</code></td>
+<td>07</td>
+</tr>
+<tr>
+<td>I.4 Detalii produs</td>
+<td><code>/product/{id}</code> (imagine, preț, caracteristici, stoc, livrare)</td>
+<td>08</td>
+</tr>
+<tr>
+<td>I.5 Coș + actualizare</td>
+<td><code>/cart</code> (modifici cantitatea, ștergi, vezi transportul)</td>
+<td>09</td>
+</tr>
+<tr>
+<td>I.6 Comandă pe cont</td>
+<td>Înregistrare/login, apoi <code>/orders</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td>I.7 Stocuri</td>
+<td>„Stoc epuizat” pe produs; stocul scade după comandă; editare în Admin → Produse</td>
+<td>11</td>
+</tr>
+<tr>
+<td>I.8 Promoții</td>
+<td>Insigna <code>-X%</code>, prețul vechi tăiat, filtrul „Doar oferte”</td>
+<td>12</td>
+</tr>
+<tr>
+<td>I.9 Factură</td>
+<td>Proformă la checkout (înainte de plată), apoi factura fiscală <code>/invoice/{id}</code> (articole, preț unitar, valori, TVA 21%)</td>
+<td>13</td>
+</tr>
+<tr>
+<td>I.10 Plata facturii</td>
+<td>Plata electronică testată: card de test (Stripe test sau card simulat 4242 4242 4242 4242). Ramburs și transfer bancar sunt opțiuni suplimentare și nu înlocuiesc plata cu cardul</td>
+<td>14, 14b; <code>./scripts/dovada_plata.sh</code> afișează plățile reușite din Stripe (mod test)</td>
+</tr>
+<tr>
+<td>I.11 Administrare</td>
+<td><code>/admin</code>: comenzi (status), produse (CRUD, stoc, promoții), utilizatori (rol, ștergere)</td>
+<td>15a, 15b, 15c</td>
+</tr>
+<tr>
+<td>Termeni și condiții / GDPR</td>
+<td><code>/termeni</code>, <code>/confidentialitate</code>, <code>/retur</code>; acceptare la înregistrare și la checkout</td>
+<td>17</td>
+</tr>
+</tbody></table>
+<h2>3. Personalizări (elemente de originalitate)</h2>
+<p>Modulele proiectate pentru un magazin de mobilier și starea lor:</p>
+<table>
+<thead>
+<tr>
+<th>Modul</th>
+<th>Ce face</th>
+<th>Stare</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Planificator de cameră „Încape la mine?”</strong> (modulul reprezentativ)</td>
+<td>Introduci dimensiunile camerei (cm), adaugi piese din catalog și le tragi pe un plan 2D la scară; piesele care nu încap sau se suprapun devin roșii, iar aplicația arată cât din podea e ocupat și dă un verdict; piesele se pot adăuga în coș</td>
+<td><strong>Implementat</strong> (<code>/planner</code>, <code>Planner.vue</code>, <code>footprint.js</code>; buton „📐 Încape în camera ta?” pe pagina produsului)</td>
+</tr>
+<tr>
+<td><strong>Comparator de produse</strong></td>
+<td>Adaugi până la 3 produse din catalog și le vezi într-un tabel side-by-side (preț, rating, material, dimensiuni, culoare, stoc, livrare); poți adăuga în coș direct din comparator</td>
+<td><strong>Implementat</strong> (<code>/compare</code>, <code>CatalogController</code>/<code>ShopApiController</code>, <code>Compare.vue</code>)</td>
+</tr>
+<tr>
+<td>Căutare cu autocomplete</td>
+<td>Sugestii în timp real din denumiri/brand/material; dacă nu există produse cu toți termenii, se afișează rezultate parțiale</td>
+<td>Implementat</td>
+</tr>
+<tr>
+<td>Estimare livrare pe coș</td>
+<td>Termenul de livrare se calculează după cel mai lent produs din coș; transport gratuit peste 1500 RON</td>
+<td>Implementat</td>
+</tr>
+<tr>
+<td>Ilustrații de mobilier generate</td>
+<td>Fiecare produs are o imagine vectorială potrivită tipului și culorii; fotografiile reale se pot seta din Admin (URL imagine)</td>
+<td>Implementat</td>
+</tr>
+<tr>
+<td><strong>Set asortat „completează camera”</strong></td>
+<td>Pe pagina produsului apar piese din aceeași colecție (ex. pat Luna + noptieră Luna) și din categorii complementare (în stoc); „Adaugă setul în coș” cu totalul setului</td>
+<td><strong>Implementat</strong> (<code>/api/products/{id}/matching</code>, <code>Matching.java</code>, secțiunea din <code>Product.vue</code>)</td>
+</tr>
+<tr>
+<td><strong>Listă de dorințe</strong></td>
+<td>Salvarea produselor favorite pe cont (♡ pe card și pe pagina produsului); pagina <code>/wishlist</code> arată prețul de la salvare și alertă 🔔 când prețul a scăzut</td>
+<td><strong>Implementat</strong> (<code>/api/wishlist</code>, <code>WishlistController</code>, <code>Wishlist.vue</code>)</td>
+</tr>
+</tbody></table>
+<p>Print screen: 16 (comparator), 16b (planificator), 16c (set asortat), 16d (listă de dorințe). Flux modul reprezentativ: pagina produsului → „📐 Încape în camera ta?” → <code>/planner</code> → dimensiunile camerei → tragi piesele pe plan → verdict.</p>
+<h2>4. PageSpeed</h2>
+<p>Rezultatul de la <a href="https://pagespeed.web.dev">https://pagespeed.web.dev</a> pe URL-ul public: print screen 18 (Mobile) și 19 (Desktop).
+Optimizări aplicate: compresie gzip, cache de 1 an pe resursele cu hash și 30 de zile pe imagini, code splitting pe rute (JS încărcat la cerere),
+datele inițiale (sesiune, produse, facete) incluse direct în HTML (fără lanț HTML → JS → API), CSS inline (fără resurse care blochează randarea),
+<code>preload</code> + <code>fetchpriority=&quot;high&quot;</code> pe primele imagini, imagini SVG ușoare cu <code>width</code>/<code>height</code> declarate, <code>loading=&quot;lazy&quot;</code> sub pliu,
+meta description/titlu/canonical per pagină, <code>robots.txt</code> + <code>sitemap.xml</code> + <code>llms.txt</code>, linkuri crawlabile, JVM cu SerialGC și încălzire la pornire.
+Local: <code>./scripts/measure_speed.sh</code> generează rapoarte Lighthouse în <code>docs/speed-reports/</code>.</p>
+<h2>5. Conținutul arhivei</h2>
+<p>Cod sursă (<code>src/</code>, <code>frontend/</code>), scripturi (<code>scripts/</code>, cu <code>scripts/tools/</code> pentru print screen automat), documentație (<code>docs/</code>: <code>PREZENTARE.md</code>, <code>DEPLOY.md</code>, <code>screenshots/</code>), iar în rădăcină <code>pom.xml</code>, <code>Dockerfile</code>, <code>docker-compose.yml</code>, <code>render.yaml</code>. Fișierele generate la rulare stau în <code>.runtime/</code> (ignorat de git).
+Rulare locală: <code>./scripts/run.sh</code> (necesită JDK 17+, Maven, Node 18+, sau Docker). Print screen automat: <code>./scripts/screenshots.sh [URL]</code> (generează și <code>PREZENTARE.html</code>). Totul dintr-o comandă (aplicație + link public + print screen-uri): <code>./scripts/auto.sh</code> sau <code>./scripts/auto.sh multi</code>. Documentare .docx/.pptx: <code>./scripts/docs.sh</code> (se rulează automat după print screen-uri și la arhivare). Arhivarea: <code>./scripts/package.sh nume_prenume</code>.</p>
+
+<h2>Print screen-uri</h2>
+<figure><img src="screenshots/01-publicat-web.png" alt="URL-ul public în browser (obligatoriu 1)" loading="lazy"><figcaption><b>01-publicat-web</b> — URL-ul public în browser (obligatoriu 1)</figcaption></figure>
+<figure><img src="screenshots/02-baza-de-date.png" alt="Admin → Baza de date pe site-ul publicat: tabelele product, app_users, orders, order_items, cu număr de rânduri (obligatoriu 2)" loading="lazy"><figcaption><b>02-baza-de-date</b> — Admin → Baza de date pe site-ul publicat: tabelele product, app_users, orders, order_items, cu număr de rânduri (obligatoriu 2)</figcaption></figure>
+<figure><img src="screenshots/03-scripturi-server.png" alt="codul controllerelor din src/main/java/com/mobila/shop (obligatoriu 3)" loading="lazy"><figcaption><b>03-scripturi-server</b> — codul controllerelor din src/main/java/com/mobila/shop (obligatoriu 3)</figcaption></figure>
+<figure><img src="screenshots/04-plata-stripe-test.png" alt="pagina Stripe în mod test, card 4242 4242 4242 4242 (obligatoriu 4)" loading="lazy"><figcaption><b>04-plata-stripe-test</b> — pagina Stripe în mod test, card 4242 4242 4242 4242 (obligatoriu 4)</figcaption></figure>
+<figure><img src="screenshots/04b-comanda-confirmata.png" alt="pagina comenzii după plată" loading="lazy"><figcaption><b>04b-comanda-confirmata</b> — pagina comenzii după plată</figcaption></figure>
+<figure><img src="screenshots/05-meniu-navigare.png" alt="bara de categorii + Oferte (I.1)" loading="lazy"><figcaption><b>05-meniu-navigare</b> — bara de categorii + Oferte (I.1)</figcaption></figure>
+<figure><img src="screenshots/06-catalog.png" alt="catalog cu filtre, sortare, căutare (I.2)" loading="lazy"><figcaption><b>06-catalog</b> — catalog cu filtre, sortare, căutare (I.2)</figcaption></figure>
+<figure><img src="screenshots/07-categorii.png" alt="/catalog?category=Canapele (I.3)" loading="lazy"><figcaption><b>07-categorii</b> — /catalog?category=Canapele (I.3)</figcaption></figure>
+<figure><img src="screenshots/08-detalii-produs.png" alt="/product/{id}: imagine, preț, caracteristici (I.4)" loading="lazy"><figcaption><b>08-detalii-produs</b> — /product/{id}: imagine, preț, caracteristici (I.4)</figcaption></figure>
+<figure><img src="screenshots/09-cos.png" alt="/cart, cu modificarea cantității (I.5)" loading="lazy"><figcaption><b>09-cos</b> — /cart, cu modificarea cantității (I.5)</figcaption></figure>
+<figure><img src="screenshots/09b-cos-actualizat.png" alt="Coș după actualizarea cantității (I.5)" loading="lazy"><figcaption><b>09b-cos-actualizat</b> — Coș după actualizarea cantității (I.5)</figcaption></figure>
+<figure><img src="screenshots/10-comanda-pe-cont.png" alt="/orders, după autentificare (I.6)" loading="lazy"><figcaption><b>10-comanda-pe-cont</b> — /orders, după autentificare (I.6)</figcaption></figure>
+<figure><img src="screenshots/11-stocuri.png" alt=""Stoc epuizat" + stoc scăzut după comandă + Admin → Produse (I.7)" loading="lazy"><figcaption><b>11-stocuri</b> — "Stoc epuizat" + stoc scăzut după comandă + Admin → Produse (I.7)</figcaption></figure>
+<figure><img src="screenshots/12-promotii.png" alt="insigna -X%, preț vechi tăiat, filtrul "Doar oferte" (I.8)" loading="lazy"><figcaption><b>12-promotii</b> — insigna -X%, preț vechi tăiat, filtrul "Doar oferte" (I.8)</figcaption></figure>
+<figure><img src="screenshots/13-factura.png" alt="/invoice/{id} cu TVA 21% (I.9)" loading="lazy"><figcaption><b>13-factura</b> — /invoice/{id} cu TVA 21% (I.9)</figcaption></figure>
+<figure><img src="screenshots/14-plata-facturii.png" alt="checkout / confirmare plată (I.10)" loading="lazy"><figcaption><b>14-plata-facturii</b> — checkout / confirmare plată (I.10)</figcaption></figure>
+<figure><img src="screenshots/14b-metode-plata.png" alt="checkout: card (plata electronică testată), ramburs, transfer bancar (I.10)" loading="lazy"><figcaption><b>14b-metode-plata</b> — checkout: card (plata electronică testată), ramburs, transfer bancar (I.10)</figcaption></figure>
+<figure><img src="screenshots/14c-stripe-plati.png" alt="dovadă plată Stripe: plățile reușite (mod test, card 4242) citite din API-ul Stripe, Admin → Plăți Stripe (I.10)" loading="lazy"><figcaption><b>14c-stripe-plati</b> — dovadă plată Stripe: plățile reușite (mod test, card 4242) citite din API-ul Stripe, Admin → Plăți Stripe (I.10)</figcaption></figure>
+<figure><img src="screenshots/15a-admin-comenzi.png" alt="/admin: comenzi + status (I.11)" loading="lazy"><figcaption><b>15a-admin-comenzi</b> — /admin: comenzi + status (I.11)</figcaption></figure>
+<figure><img src="screenshots/15b-admin-produse.png" alt="/admin: produse (CRUD, stoc, promoții)" loading="lazy"><figcaption><b>15b-admin-produse</b> — /admin: produse (CRUD, stoc, promoții)</figcaption></figure>
+<figure><img src="screenshots/15c-admin-utilizatori.png" alt="/admin: utilizatori" loading="lazy"><figcaption><b>15c-admin-utilizatori</b> — /admin: utilizatori</figcaption></figure>
+<figure><img src="screenshots/16-personalizare-comparator.png" alt="/compare (II)" loading="lazy"><figcaption><b>16-personalizare-comparator</b> — /compare (II)</figcaption></figure>
+<figure><img src="screenshots/16b-planificator-camera.png" alt="/planner: plan 2D la scară cu piese și verdict „încape” (II, modulul reprezentativ)" loading="lazy"><figcaption><b>16b-planificator-camera</b> — /planner: plan 2D la scară cu piese și verdict „încape” (II, modulul reprezentativ)</figcaption></figure>
+<figure><img src="screenshots/16c-set-asortat.png" alt="pagina produsului: „Completează camera” cu piese din aceeași colecție și setul în coș (II)" loading="lazy"><figcaption><b>16c-set-asortat</b> — pagina produsului: „Completează camera” cu piese din aceeași colecție și setul în coș (II)</figcaption></figure>
+<figure><img src="screenshots/16d-lista-dorinte.png" alt="/wishlist: produse salvate pe cont, cu alertă la scădere de preț (II)" loading="lazy"><figcaption><b>16d-lista-dorinte</b> — /wishlist: produse salvate pe cont, cu alertă la scădere de preț (II)</figcaption></figure>
+<figure><img src="screenshots/17-termeni-si-conditii.png" alt="/termeni" loading="lazy"><figcaption><b>17-termeni-si-conditii</b> — /termeni</figcaption></figure>
+<figure><img src="screenshots/17b-confidentialitate.png" alt="Politica de confidențialitate" loading="lazy"><figcaption><b>17b-confidentialitate</b> — Politica de confidențialitate</figcaption></figure>
+<figure><img src="screenshots/17c-inregistrare-cu-termeni.png" alt="Înregistrare cu bifa obligatorie pentru termeni" loading="lazy"><figcaption><b>17c-inregistrare-cu-termeni</b> — Înregistrare cu bifa obligatorie pentru termeni</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-01.png" alt="PageSpeed Insights, Mobile — ecran 01 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-01</b> — PageSpeed Insights, Mobile — ecran 01 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-02.png" alt="PageSpeed Insights, Mobile — ecran 02 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-02</b> — PageSpeed Insights, Mobile — ecran 02 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-03.png" alt="PageSpeed Insights, Mobile — ecran 03 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-03</b> — PageSpeed Insights, Mobile — ecran 03 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-04.png" alt="PageSpeed Insights, Mobile — ecran 04 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-04</b> — PageSpeed Insights, Mobile — ecran 04 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-05.png" alt="PageSpeed Insights, Mobile — ecran 05 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-05</b> — PageSpeed Insights, Mobile — ecran 05 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-06.png" alt="PageSpeed Insights, Mobile — ecran 06 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-06</b> — PageSpeed Insights, Mobile — ecran 06 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-07.png" alt="PageSpeed Insights, Mobile — ecran 07 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-07</b> — PageSpeed Insights, Mobile — ecran 07 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-08.png" alt="PageSpeed Insights, Mobile — ecran 08 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-08</b> — PageSpeed Insights, Mobile — ecran 08 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-09.png" alt="PageSpeed Insights, Mobile — ecran 09 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-09</b> — PageSpeed Insights, Mobile — ecran 09 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-10.png" alt="PageSpeed Insights, Mobile — ecran 10 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-10</b> — PageSpeed Insights, Mobile — ecran 10 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-11.png" alt="PageSpeed Insights, Mobile — ecran 11 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-11</b> — PageSpeed Insights, Mobile — ecran 11 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-12.png" alt="PageSpeed Insights, Mobile — ecran 12 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-12</b> — PageSpeed Insights, Mobile — ecran 12 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-13.png" alt="PageSpeed Insights, Mobile — ecran 13 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-13</b> — PageSpeed Insights, Mobile — ecran 13 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-14.png" alt="PageSpeed Insights, Mobile — ecran 14 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-14</b> — PageSpeed Insights, Mobile — ecran 14 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-15.png" alt="PageSpeed Insights, Mobile — ecran 15 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-15</b> — PageSpeed Insights, Mobile — ecran 15 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-16.png" alt="PageSpeed Insights, Mobile — ecran 16 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-16</b> — PageSpeed Insights, Mobile — ecran 16 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-17.png" alt="PageSpeed Insights, Mobile — ecran 17 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-17</b> — PageSpeed Insights, Mobile — ecran 17 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-18.png" alt="PageSpeed Insights, Mobile — ecran 18 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-18</b> — PageSpeed Insights, Mobile — ecran 18 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-19.png" alt="PageSpeed Insights, Mobile — ecran 19 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-19</b> — PageSpeed Insights, Mobile — ecran 19 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-20.png" alt="PageSpeed Insights, Mobile — ecran 20 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-20</b> — PageSpeed Insights, Mobile — ecran 20 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-21.png" alt="PageSpeed Insights, Mobile — ecran 21 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-21</b> — PageSpeed Insights, Mobile — ecran 21 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-22.png" alt="PageSpeed Insights, Mobile — ecran 22 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-22</b> — PageSpeed Insights, Mobile — ecran 22 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-23.png" alt="PageSpeed Insights, Mobile — ecran 23 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-23</b> — PageSpeed Insights, Mobile — ecran 23 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-24.png" alt="PageSpeed Insights, Mobile — ecran 24 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-24</b> — PageSpeed Insights, Mobile — ecran 24 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-25.png" alt="PageSpeed Insights, Mobile — ecran 25 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-25</b> — PageSpeed Insights, Mobile — ecran 25 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-26.png" alt="PageSpeed Insights, Mobile — ecran 26 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-26</b> — PageSpeed Insights, Mobile — ecran 26 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-27.png" alt="PageSpeed Insights, Mobile — ecran 27 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-27</b> — PageSpeed Insights, Mobile — ecran 27 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-28.png" alt="PageSpeed Insights, Mobile — ecran 28 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-28</b> — PageSpeed Insights, Mobile — ecran 28 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-29.png" alt="PageSpeed Insights, Mobile — ecran 29 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-29</b> — PageSpeed Insights, Mobile — ecran 29 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile-30.png" alt="PageSpeed Insights, Mobile — ecran 30 din raport" loading="lazy"><figcaption><b>18-pagespeed-mobile-30</b> — PageSpeed Insights, Mobile — ecran 30 din raport</figcaption></figure>
+<figure><img src="screenshots/18-pagespeed-mobile.png" alt="https://pagespeed.web.dev, URL public, Mobile" loading="lazy"><figcaption><b>18-pagespeed-mobile</b> — https://pagespeed.web.dev, URL public, Mobile</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-01.png" alt="PageSpeed Insights, Desktop — ecran 01 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-01</b> — PageSpeed Insights, Desktop — ecran 01 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-02.png" alt="PageSpeed Insights, Desktop — ecran 02 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-02</b> — PageSpeed Insights, Desktop — ecran 02 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-03.png" alt="PageSpeed Insights, Desktop — ecran 03 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-03</b> — PageSpeed Insights, Desktop — ecran 03 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-04.png" alt="PageSpeed Insights, Desktop — ecran 04 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-04</b> — PageSpeed Insights, Desktop — ecran 04 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-05.png" alt="PageSpeed Insights, Desktop — ecran 05 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-05</b> — PageSpeed Insights, Desktop — ecran 05 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-06.png" alt="PageSpeed Insights, Desktop — ecran 06 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-06</b> — PageSpeed Insights, Desktop — ecran 06 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-07.png" alt="PageSpeed Insights, Desktop — ecran 07 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-07</b> — PageSpeed Insights, Desktop — ecran 07 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-08.png" alt="PageSpeed Insights, Desktop — ecran 08 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-08</b> — PageSpeed Insights, Desktop — ecran 08 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-09.png" alt="PageSpeed Insights, Desktop — ecran 09 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-09</b> — PageSpeed Insights, Desktop — ecran 09 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-10.png" alt="PageSpeed Insights, Desktop — ecran 10 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-10</b> — PageSpeed Insights, Desktop — ecran 10 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-11.png" alt="PageSpeed Insights, Desktop — ecran 11 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-11</b> — PageSpeed Insights, Desktop — ecran 11 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-12.png" alt="PageSpeed Insights, Desktop — ecran 12 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-12</b> — PageSpeed Insights, Desktop — ecran 12 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-13.png" alt="PageSpeed Insights, Desktop — ecran 13 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-13</b> — PageSpeed Insights, Desktop — ecran 13 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-14.png" alt="PageSpeed Insights, Desktop — ecran 14 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-14</b> — PageSpeed Insights, Desktop — ecran 14 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-15.png" alt="PageSpeed Insights, Desktop — ecran 15 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-15</b> — PageSpeed Insights, Desktop — ecran 15 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-16.png" alt="PageSpeed Insights, Desktop — ecran 16 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-16</b> — PageSpeed Insights, Desktop — ecran 16 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-17.png" alt="PageSpeed Insights, Desktop — ecran 17 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-17</b> — PageSpeed Insights, Desktop — ecran 17 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-18.png" alt="PageSpeed Insights, Desktop — ecran 18 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-18</b> — PageSpeed Insights, Desktop — ecran 18 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-19.png" alt="PageSpeed Insights, Desktop — ecran 19 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-19</b> — PageSpeed Insights, Desktop — ecran 19 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-20.png" alt="PageSpeed Insights, Desktop — ecran 20 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-20</b> — PageSpeed Insights, Desktop — ecran 20 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-21.png" alt="PageSpeed Insights, Desktop — ecran 21 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-21</b> — PageSpeed Insights, Desktop — ecran 21 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-22.png" alt="PageSpeed Insights, Desktop — ecran 22 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-22</b> — PageSpeed Insights, Desktop — ecran 22 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-23.png" alt="PageSpeed Insights, Desktop — ecran 23 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-23</b> — PageSpeed Insights, Desktop — ecran 23 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-24.png" alt="PageSpeed Insights, Desktop — ecran 24 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-24</b> — PageSpeed Insights, Desktop — ecran 24 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-25.png" alt="PageSpeed Insights, Desktop — ecran 25 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-25</b> — PageSpeed Insights, Desktop — ecran 25 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-26.png" alt="PageSpeed Insights, Desktop — ecran 26 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-26</b> — PageSpeed Insights, Desktop — ecran 26 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-27.png" alt="PageSpeed Insights, Desktop — ecran 27 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-27</b> — PageSpeed Insights, Desktop — ecran 27 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-28.png" alt="PageSpeed Insights, Desktop — ecran 28 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-28</b> — PageSpeed Insights, Desktop — ecran 28 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-29.png" alt="PageSpeed Insights, Desktop — ecran 29 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-29</b> — PageSpeed Insights, Desktop — ecran 29 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop-30.png" alt="PageSpeed Insights, Desktop — ecran 30 din raport" loading="lazy"><figcaption><b>19-pagespeed-desktop-30</b> — PageSpeed Insights, Desktop — ecran 30 din raport</figcaption></figure>
+<figure><img src="screenshots/19-pagespeed-desktop.png" alt="https://pagespeed.web.dev, URL public, Desktop" loading="lazy"><figcaption><b>19-pagespeed-desktop</b> — https://pagespeed.web.dev, URL public, Desktop</figcaption></figure>
+<figure><img src="screenshots/20-chatbot-ai.png" alt="asistentul AI: conversație cu recomandare de produse din catalog (II, personalizare)" loading="lazy"><figcaption><b>20-chatbot-ai</b> — asistentul AI: conversație cu recomandare de produse din catalog (II, personalizare)</figcaption></figure>
+</body></html>

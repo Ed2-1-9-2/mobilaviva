@@ -1,0 +1,77 @@
+# Script-uri pe server (Java, Spring Boot): controllere și endpoint-uri
+
+## AdminApiController.java
+  linia 11:@RequestMapping("/api/admin")   // protejat de AdminGuard
+  linia 26:    @GetMapping("/orders")
+  linia 29:    @PutMapping("/orders/{id}/status")
+  linia 44:    @GetMapping("/products")
+  linia 67:    @PostMapping("/products")
+  linia 76:    @PutMapping("/products/{id}")
+  linia 86:    @DeleteMapping("/products/{id}")
+  linia 92:    @GetMapping("/users")
+  linia 97:    @PutMapping("/users/{id}/role")
+  linia 107:    @DeleteMapping("/users/{id}")
+
+## AdminDbController.java
+  linia 21:@RequestMapping("/api/admin/db")
+  linia 31:    @GetMapping
+
+## AuthApiController.java
+  linia 12:@RequestMapping("/api/auth")
+  linia 32:    @PostMapping("/login")
+  linia 50:    @PostMapping("/register")
+  linia 70:    @PostMapping("/logout")
+
+## CatalogController.java
+  linia 59:    @GetMapping("/api/products")
+  linia 93:    @GetMapping("/api/products/{id}")
+  linia 102:    @GetMapping("/api/facets")
+  linia 110:    @GetMapping("/api/suggest")
+  linia 119:    @GetMapping(value = "/img/{id}.svg", produces = "image/svg+xml")
+
+## ChatController.java
+  linia 27:    @GetMapping("/api/chat/info")
+  linia 35:    @PostMapping("/api/chat")
+
+## MatchingController.java
+  linia 27:    @GetMapping("/api/products/{id}/matching")
+
+## PageController.java
+  linia 126:    @GetMapping({"/", "/catalog", "/product/**", "/cart", "/checkout", "/checkout/success", "/checkout/cancel", "/login", "/register", "/compare", "/planner",
+  linia 185:    @GetMapping(value = "/robots.txt", produces = "text/plain;charset=UTF-8")
+  linia 191:    @GetMapping(value = "/sitemap.xml", produces = "application/xml;charset=UTF-8")
+  linia 208:    @GetMapping(value = "/llms.txt", produces = "text/plain;charset=UTF-8")
+
+## ReviewController.java
+  linia 18:@RequestMapping("/api/products/{productId}/reviews")
+  linia 34:    @GetMapping
+  linia 46:    @PostMapping
+
+## ShopApiController.java
+  linia 14:@RequestMapping("/api")
+  linia 93:    @GetMapping("/session")
+  linia 107:    @GetMapping("/cart")
+  linia 110:    @PostMapping("/cart/items")
+  linia 124:    @PutMapping("/cart/items/{id}")
+  linia 137:    @DeleteMapping("/cart/items/{id}")
+  linia 144:    @GetMapping("/compare")
+  linia 151:    @PostMapping("/compare/{id}")
+  linia 162:    @DeleteMapping("/compare/{id}")
+  linia 168:    @DeleteMapping("/compare")
+  linia 175:    @PostMapping("/checkout")
+  linia 211:    @PostMapping("/checkout/offline")
+  linia 240:    @PostMapping("/checkout/stripe")
+  linia 266:    @PostMapping("/checkout/stripe/confirm")
+  linia 282:    @GetMapping("/orders")
+  linia 289:    @GetMapping("/orders/{id}")
+
+## StripeWebhookController.java
+  linia 17:@RequestMapping("/api/stripe")
+  linia 30:    @PostMapping("/webhook")
+
+## WishlistController.java
+  linia 23:@RequestMapping("/api/wishlist")
+  linia 40:    @GetMapping
+  linia 66:    @PutMapping("/{productId}")
+  linia 84:    @PostMapping("/{productId}/ack")
+  linia 94:    @DeleteMapping("/{productId}")
